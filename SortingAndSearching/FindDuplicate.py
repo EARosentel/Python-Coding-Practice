@@ -1,25 +1,24 @@
-def find_duplicate(intarr):
+def find_duplicate(int_arr):
     floor = -1
-    ceiling = len(intarr)
+    ceiling = len(int_arr)
 
     while floor < ceiling - 1:
+        print "floor: %s  ceiling: %s" % (floor, ceiling)
         dist = (ceiling - floor) / 2
         guess = floor + dist
-
-        if intarr[guess] == intarr[guess+1]:
-            return intarr[guess]
+        if int_arr[guess] < guess + 1:
+            ceiling = guess
         else:
             floor = guess
 
+    return ceiling
 
-    return None
+
+def main():
+    one_duplicate = [1, 1, 2, 2, 4, 5, 6]
+    print(find_duplicate(one_duplicate))  # returns 4
 
 
-# testing
-onedupe = [1,2,3,4,4,5,6]
-manydupe = [1,1,1,3,3,3,6]
+if __name__ == '__main__':
+    main()
 
-# print(find_duplicate(emptyarr))  # returns None
-# print(find_duplicate(nodupes))  # returns None
-print(find_duplicate(onedupe))  # returns 4
-print(find_duplicate(manydupe))  # returns 1
